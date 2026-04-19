@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,8 @@
         }
 
         body {
-            background-color: #1a1a1a;;
+            background-color: #1a1a1a;
+            ;
             color: #e0e0e0;
             font-family: Arial, sans-serif;
             display: flex;
@@ -52,6 +54,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* Убираем overflow: hidden, чтобы спойлер мог отображаться ниже */
         }
 
         button {
@@ -85,12 +88,20 @@
             padding: 0 20px;
             background-color: #2a2a2a;
             border-radius: 5px;
-            margin-top: 10px;
+            margin-top: 0;
+            /* Изначально без отступа */
+            opacity: 0;
+            /* Начинаем с полной прозрачности */
         }
 
         .spoiler.active {
-            max-height: 800px;
+            /* вместимость спойлера */
+            max-height: 600px;
             padding: 20px;
+            margin-top: 0px;
+            /* Отступ сверху при открытии */
+            opacity: 1;
+            /* Полностью видимый */
         }
 
         .spoiler-content {
@@ -121,240 +132,292 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>Мой ПК</h1>
-              <!--  <p>Тёмное оформление, все элементы по центру</p> -->
+            <!--  <p>TEXT</p> -->
         </div>
 
-        <!-- карточка 1 -->
+        <!-- 1 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler1">Видеокарта</button>
-            <div class="spoiler" id="spoiler1">
-                <div class="spoiler-content">
-                    <p><strong>ZOTAC GAMING GeForce RTX 4070 Twin Edge 12 r5 (2t-D40700e10m)</strong></p>
-                    <img src="img/pc/zotac.jpg" alt="ZOTAC GAMING GeForce RTX 4070 Twin Edge 12 r5 (2t-D40700e10m)" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.zotac.com/ru/product/graphics_card/zotac-gaming-geforce-rtx-4070-twin-edge-0" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 1 карточки -->
+        <div class="spoiler" id="spoiler1">
+            <div class="spoiler-content">
+                <p><strong>ZOTAC GAMING GeForce RTX 4070 Twin Edge 12 r5 (2t-D40700e10m)</strong></p>
+                <img src="img/pc/zotac.jpg" alt="ZOTAC GAMING GeForce RTX 4070 Twin Edge 12 r5 (2t-D40700e10m)" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.zotac.com/ru/product/graphics_card/zotac-gaming-geforce-rtx-4070-twin-edge-0" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 2 -->
+        <!-- 2 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler2">Процессор</button>
-            <div class="spoiler" id="spoiler2">
-                <div class="spoiler-content">
-                    <p><strong>AMD Ryzen5 5600</strong></p>
-                    <img src="img/pc/amd.jpg" alt="AMD Ryzen5 5600" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.citilink.ru/product/processor-amd-ryzen-5-5600-am4-oem-100-000000927-1970792/" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 2 карточки -->
+        <div class="spoiler" id="spoiler2">
+            <div class="spoiler-content">
+                <p><strong>AMD Ryzen5 5600</strong></p>
+                <img src="img/pc/amd.jpg" alt="AMD Ryzen5 5600" style="max-width: 30%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.citilink.ru/product/processor-amd-ryzen-5-5600-am4-oem-100-000000927-1970792/" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 3 -->
+        <!-- 3 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler3">Материнская плата</button>
-            <div class="spoiler" id="spoiler3">
-                <div class="spoiler-content">
-                    <p><strong>Gigabyte B550M AORUS ELITE, SocketAM4, AMD B550, mATX, Ret</strong></p>
-                    <img src="img/pc/mother_board.png" alt="Gigabyte B550M AORUS ELITE" style="max-width: 60%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.gigabyte.com/Motherboard/B550M-AORUS-ELITE-rev-10-11-12" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 3 карточки -->
+        <div class="spoiler" id="spoiler3">
+            <div class="spoiler-content">
+                <p><strong>Gigabyte B550M AORUS ELITE, SocketAM4, AMD B550, mATX, Ret</strong></p>
+                <img src="img/pc/mother_board.png" alt="Gigabyte B550M AORUS ELITE" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.gigabyte.com/Motherboard/B550M-AORUS-ELITE-rev-10-11-12" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 4 -->
+        <!-- 4 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler4">Оперативная память</button>
-            <div class="spoiler" id="spoiler4">
-                <div class="spoiler-content">
-                    <p><strong>Kingston Fury Kingston-DDR4-3600 2x16 ГБ (KF436C18BB/16×2)</strong></p>
-                    <img src="img/pc/kingston.jpg" alt="Kingston Fury Kingston-DDR4-3600" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.citilink.ru/product/operativnaya-pamyat-kingston-fury-beast-black-kf436c18bb-16-ddr4-1x-16-1560752/" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 4 карточки -->
+        <div class="spoiler" id="spoiler4">
+            <div class="spoiler-content">
+                <p><strong>Kingston Fury Kingston-DDR4-3600 2x16 ГБ (KF436C18BB/16×2)</strong></p>
+                <img src="img/pc/kingston.jpg" alt="Kingston Fury Kingston-DDR4-3600" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.citilink.ru/product/operativnaya-pamyat-kingston-fury-beast-black-kf436c18bb-16-ddr4-1x-16-1560752/" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 5 -->
+        <!-- 5 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler5">Блок питания</button>
-            <div class="spoiler" id="spoiler5">
-                <div class="spoiler-content">
-                    <p><strong>MONTECH CENTURY 550 [CENTURY 550]</strong></p>
-                    <img src="img/pc/power_unit.webp" alt="MONTECH CENTURY 550 [CENTURY 550]" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.dns-shop.ru/product/995d23083bbaed20" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 5 карточки -->
+        <div class="spoiler" id="spoiler5">
+            <div class="spoiler-content">
+                <p><strong>MONTECH CENTURY 550 [CENTURY 550]</strong></p>
+                <img src="img/pc/power_unit.webp" alt="MONTECH CENTURY 550 [CENTURY 550]" style="max-width: 40%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.dns-shop.ru/product/995d23083bbaed20" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 6 -->
+        <!-- 6 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler6">Кулер для процессора</button>
-            <div class="spoiler" id="spoiler6">
-                <div class="spoiler-content">
-                    <p><strong>DEEPCOOL GAMMAXX 400K [LGA1700] [DP-MCH4-GMX400V2-K]</strong></p>
-                    <img src="img/pc/cooler.webp" alt="DEEPCOOL GAMMAXX 400K [LGA1700] [DP-MCH4-GMX400V2-K]" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.dns-shop.ru/product/062d3b5b622bed20" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 6 карточки -->
+        <div class="spoiler" id="spoiler6">
+            <div class="spoiler-content">
+                <p><strong>DEEPCOOL GAMMAXX 400K [LGA1700] [DP-MCH4-GMX400V2-K]</strong></p>
+                <img src="img/pc/cooler.webp" alt="DEEPCOOL GAMMAXX 400K [LGA1700] [DP-MCH4-GMX400V2-K]" style="max-width: 40%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.dns-shop.ru/product/062d3b5b622bed20" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 7 -->
+        <!-- 7 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler7">Накопитель 256 ГБ M.2 NVMe</button>
-            <div class="spoiler" id="spoiler7">
-                <div class="spoiler-content">
-                    <p><strong>256 ГБ M.2 NVMe накопитель Patriot P300 [P300P256GM28]</strong></p>
-                    <img src="img/pc/NVMe_256.webp" alt="256 ГБ M.2 NVMe накопитель Patriot P300 [P300P256GM28]" style="max-width: 70%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.dns-shop.ru/product/537ef8e45c183332" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 7 карточки -->
+        <div class="spoiler" id="spoiler7">
+            <div class="spoiler-content">
+                <p><strong>256 ГБ M.2 NVMe накопитель Patriot P300 [P300P256GM28]</strong></p>
+                <img src="img/pc/NVMe_256.webp" alt="256 ГБ M.2 NVMe накопитель Patriot P300 [P300P256GM28]" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.dns-shop.ru/product/537ef8e45c183332" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 8 -->
+        <!-- 8 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler8">Накопитель 1000 ГБ M.2 NVMe</button>
-            <div class="spoiler" id="spoiler8">
-                <div class="spoiler-content">
-                    <p><strong>1000 ГБ M.2 NVMe накопитель ADATA XPG GAMMIX S11 Pro [AGAMMIXS11P-1TT-C]</strong></p>
-                    <img src="img/pc/NVMe_1000.webp" alt="1000 ГБ M.2 NVMe накопитель ADATA XPG GAMMIX S11 Pro [AGAMMIXS11P-1TT-C]" style="max-width: 70%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.dns-shop.ru/product/134e19be243b1b80" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 8 карточки -->
+        <div class="spoiler" id="spoiler8">
+            <div class="spoiler-content">
+                <p><strong>1000 ГБ M.2 NVMe накопитель ADATA XPG GAMMIX S11 Pro [AGAMMIXS11P-1TT-C]</strong></p>
+                <img src="img/pc/NVMe_1000.webp" alt="1000 ГБ M.2 NVMe накопитель ADATA XPG GAMMIX S11 Pro [AGAMMIXS11P-1TT-C]" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.dns-shop.ru/product/134e19be243b1b80" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 9 -->
+        <!-- 9 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler9">Корпус</button>
-            <div class="spoiler" id="spoiler9">
-                <div class="spoiler-content">
-                    <p><strong>PowerCase Mistral Micro D3B ARGB V2 [CMMDB-A3-V2] черный</strong></p>
-                    <img src="img/pc/corpus.webp" alt="PowerCase Mistral Micro D3B ARGB V2 [CMMDB-A3-V2] черный" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.dns-shop.ru/product/7e2fcf84847e8a40/" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 9 карточки -->
+        <div class="spoiler" id="spoiler9">
+            <div class="spoiler-content">
+                <p><strong>PowerCase Mistral Micro D3B ARGB V2 [CMMDB-A3-V2] черный</strong></p>
+                <img src="img/pc/corpus.webp" alt="PowerCase Mistral Micro D3B ARGB V2 [CMMDB-A3-V2] черный" style="max-width: 40%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.dns-shop.ru/product/7e2fcf84847e8a40/" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 10 -->
+        <!-- 10 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler10">Монитор</button>
-            <div class="spoiler" id="spoiler10">
-                <div class="spoiler-content">
-                    <p><strong>FYHXele 24" Монитор FY24FMC-W, белый</strong></p>
-                    <img src="img/pc/monik.webp" alt="FYHXele 24' Монитор FY24FMC-W, белый" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://ozon.ru/t/1WHfvVa" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 10 карточки -->
+        <div class="spoiler" id="spoiler10">
+            <div class="spoiler-content">
+                <p><strong>FYHXele 24" Монитор FY24FMC-W, белый</strong></p>
+                <img src="img/pc/monik.webp" alt="FYHXele 24' Монитор FY24FMC-W, белый" style="max-width: 40%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://ozon.ru/t/1WHfvVa" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 11 -->
+        <!-- 11 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler11">Клавиатура</button>
-            <div class="spoiler" id="spoiler11">
-                <div class="spoiler-content">
-                    <p><strong>Redragon Caraxes Pro(60%)</strong></p>
-                    <img src="img/pc/klava.webp" alt="Redragon Caraxes Pro(60%)" style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://redragon.ru/catalog/keyboards/10686?ysclid=mbj3zofi4n479313654" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 11 карточки -->
+        <div class="spoiler" id="spoiler11">
+            <div class="spoiler-content">
+                <p><strong>Redragon Caraxes Pro(60%)</strong></p>
+                <img src="img/pc/klava.webp" alt="Redragon Caraxes Pro(60%)" style="max-width: 70%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://redragon.ru/catalog/keyboards/10686?ysclid=mbj3zofi4n479313654" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 12 -->
+        <!-- 12 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler12">Мышка</button>
-            <div class="spoiler" id="spoiler12">
-                <div class="spoiler-content">
-                    <p><strong>DELUX M800DC(PAW3370)</strong></p>
-                    <img src="img/pc/mouse.png" alt="DELUX M800DC(PAW3370)" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.deluxworld.com/en-pro-detail-M800pro.html" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 12 карточки -->
+        <div class="spoiler" id="spoiler12">
+            <div class="spoiler-content">
+                <p><strong>DELUX M800DC(PAW3370)</strong></p>
+                <img src="img/pc/mouse.png" alt="DELUX M800DC(PAW3370)" style="max-width: 40%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.deluxworld.com/en-pro-detail-M800pro.html" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 13 -->
+        <!-- 13 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler13">Наушники</button>
-            <div class="spoiler" id="spoiler13">
-                <div class="spoiler-content">
-                    <p><strong>Razer Barracuda X</strong></p>
-                    <p>Наушники беспроводные, со съемным микрофоном, Bluetooth, Радиоканал, 3.5 мм, USB Type-C, черный</p>
-                    <img src="img/pc/headphones.jpg" alt="Razer Barracuda X" style="max-width: 60%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://www.razer.ru/product/gameaudio/razer-barracuda-x?sku=RZ04-04430100-R3M1" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 13 карточки -->
+        <div class="spoiler" id="spoiler13">
+            <div class="spoiler-content">
+                <p><strong>Razer Barracuda X</strong></p>
+                <p>Наушники беспроводные, со съемным микрофоном, Bluetooth, Радиоканал, 3.5 мм, USB Type-C, черный</p>
+                <img src="img/pc/headphones.jpg" alt="Razer Barracuda X" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://www.razer.ru/product/gameaudio/razer-barracuda-x?sku=RZ04-04430100-R3M1" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 14 -->
+        <!-- 14 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler14">Микрофон</button>
-            <div class="spoiler" id="spoiler14">
-                <div class="spoiler-content">
-                    <p><strong>FIFINE AmpliGame A6V</strong></p>
-                    <p>Конденсаторный RGB USB-микрофон</p>
-                    <img src="img/pc/Microphone.jpg" alt="FIFINE AmpliGame A6V" style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
-                    <a href="https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone" target="_blank" class="external-link">Ссылка</a>
-                </div>
+        </div>
+
+        <!-- Спойлер для 14 карточки -->
+        <div class="spoiler" id="spoiler14">
+            <div class="spoiler-content">
+                <p><strong>FIFINE AmpliGame A6V</strong></p>
+                <p>Конденсаторный RGB USB-микрофон</p>
+                <img src="img/pc/Microphone.jpg" alt="FIFINE AmpliGame A6V" style="max-width: 40%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone" target="_blank" class="external-link">Ссылка</a>
             </div>
         </div>
 
-        <!-- карточка 15 -->
+        <!-- 15 карточка -->
         <div class="card">
             <button class="toggle-spoiler" data-target="spoiler15">Списком</button>
-            <div class="spoiler" id="spoiler15">
-                <div class="spoiler-content">
-                    <p><strong>Видеокарта</strong> <a href="https://www.zotac.com/ru/product/graphics_card/zotac-gaming-geforce-rtx-4070-twin-edge-0" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">ZOTAC GAMING GeForce RTX 4070 Twin Edge</a></p>
-                    <p><strong>Процессор</strong> <a href="https://www.citilink.ru/product/processor-amd-ryzen-5-5600-am4-oem-100-000000927-1970792/" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">AMD Ryzen5 5600</a></p>
-                    <p><strong>Материнская плата</strong> <a href="https://www.gigabyte.com/Motherboard/B550M-AORUS-ELITE-rev-10-11-12" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Gigabyte B550M AORUS ELITE</a></p>
-                    <p><strong>Оперативная память</strong> <a href="https://www.citilink.ru/product/operativnaya-pamyat-kingston-fury-beast-black-kf436c18bb-16-ddr4-1x-16-1560752/" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Kingston Fury DDR4-3600 2x16 ГБ</a></p>
-                    <p><strong>Блок питания</strong> <a href="https://www.dns-shop.ru/product/995d23083bbaed20" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">MONTECH CENTURY 550</a></p>
-                    <p><strong>Кулер для процессора</strong> <a href="https://www.dns-shop.ru/product/062d3b5b622bed20" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">DEEPCOOL GAMMAXX 400K</a></p>
-                    <p><strong>Накопитель 1</strong> <a href="https://www.dns-shop.ru/product/537ef8e45c183332" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">256 ГБ M.2 NVMe накопитель Patriot P300</a></p>
-                    <p><strong>Накопитель 2</strong> <a href="https://www.dns-shop.ru/product/134e19be243b1b80" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">1000 ГБ M.2 NVMe накопитель ADATA XPG GAMMIX S11 Pro</a></p>
-                    <p><strong>Накопитель 3</strong> <a href="https://market.yandex.ru/card/nakopitel-ssd-western-digital-green-1-tb-25-sata-6-gbits/4362587415?showOriginalKmEmptyOffer=1&ogV=-12" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">SSD Western Digital Green 1 Тб 2.5" SATA 6 Гбит/с</a></p>
-                    <p><strong>Накопитель 4</strong> <a href="https://www.dns-shop.ru/product/c9fb736ee65bed20/" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">1 ТБ Жесткий диск WD Blue</a></p>
-                    <p><strong>Корпус</strong> <a href="PowerCase Mistral Micro D3B ARGB V2 [CMMDB-A3-V2] черный" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">PowerCase Mistral Micro D3B ARGB V2</a></p>
-                    <p><strong>Монитор</strong> <a href="https://ozon.ru/t/1WHfvVa" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">FYHXele 24"</a></p>
-                    <p><strong>Клавиатура</strong> <a href="https://redragon.ru/catalog/keyboards/10686?ysclid=mbj3zofi4n479313654" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Redragon Caraxes Pro(60%)</a></p>
-                    <p><strong>Мышка</strong> <a href="https://www.deluxworld.com/en-pro-detail-M800pro.html" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">DELUX M800DC(PAW3370)</a></p>
-                    <p><strong>Наушники</strong> <a href="https://www.razer.ru/product/gameaudio/razer-barracuda-x?sku=RZ04-04430100-R3M1" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Razer Barracuda X</a></p>
-                    <p><strong>Микрофон</strong> <a href="https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">FIFINE AmpliGame A6V</a></p>
-                </div>
+        </div>
+
+        <!-- Спойлер для 15 карточки -->
+        <div class="spoiler" id="spoiler15">
+            <div class="spoiler-content">
+                <p><strong>Видеокарта</strong> <a href="https://www.zotac.com/ru/product/graphics_card/zotac-gaming-geforce-rtx-4070-twin-edge-0" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">ZOTAC GAMING GeForce RTX 4070 Twin Edge</a></p>
+                <p><strong>Процессор</strong> <a href="https://www.citilink.ru/product/processor-amd-ryzen-5-5600-am4-oem-100-000000927-1970792/" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">AMD Ryzen5 5600</a></p>
+                <p><strong>Материнская плата</strong> <a href="https://www.gigabyte.com/Motherboard/B550M-AORUS-ELITE-rev-10-11-12" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Gigabyte B550M AORUS ELITE</a></p>
+                <p><strong>Оперативная память</strong> <a href="https://www.citilink.ru/product/operativnaya-pamyat-kingston-fury-beast-black-kf436c18bb-16-ddr4-1x-16-1560752/" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Kingston Fury DDR4-3600 2x16 ГБ</a></p>
+                <p><strong>Блок питания</strong> <a href="https://www.dns-shop.ru/product/995d23083bbaed20" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">MONTECH CENTURY 550</a></p>
+                <p><strong>Кулер для процессора</strong> <a href="https://www.dns-shop.ru/product/062d3b5b622bed20" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">DEEPCOOL GAMMAXX 400K</a></p>
+                <p><strong>Накопитель 1</strong> <a href="https://www.dns-shop.ru/product/537ef8e45c183332" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">256 ГБ M.2 NVMe накопитель Patriot P300</a></p>
+                <p><strong>Накопитель 2</strong> <a href="https://www.dns-shop.ru/product/134e19be243b1b80" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">1000 ГБ M.2 NVMe накопитель ADATA XPG GAMMIX S11 Pro</a></p>
+                <p><strong>Накопитель 3</strong> <a href="https://market.yandex.ru/card/nakopitel-ssd-western-digital-green-1-tb-25-sata-6-gbits/4362587415?showOriginalKmEmptyOffer=1&ogV=-12" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">SSD Western Digital Green 1 Тб 2.5" SATA 6 Гбит/с</a></p>
+                <p><strong>Накопитель 4</strong> <a href="https://www.dns-shop.ru/product/c9fb736ee65bed20/" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">1 ТБ Жесткий диск WD Blue</a></p>
+                <p><strong>Корпус</strong> <a href="PowerCase Mistral Micro D3B ARGB V2 [CMMDB-A3-V2] черный" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">PowerCase Mistral Micro D3B ARGB V2</a></p>
+                <p><strong>Монитор</strong> <a href="https://ozon.ru/t/1WHfvVa" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">FYHXele 24"</a></p>
+                <p><strong>Клавиатура</strong> <a href="https://redragon.ru/catalog/keyboards/10686?ysclid=mbj3zofi4n479313654" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Redragon Caraxes Pro(60%)</a></p>
+                <p><strong>Мышка</strong> <a href="https://www.deluxworld.com/en-pro-detail-M800pro.html" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">DELUX M800DC(PAW3370)</a></p>
+                <p><strong>Наушники</strong> <a href="https://www.razer.ru/product/gameaudio/razer-barracuda-x?sku=RZ04-04430100-R3M1" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">Razer Barracuda X</a></p>
+                <p><strong>Микрофон</strong> <a href="https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone" target="_blank" rel="noopenererferrer" style="color: #4CAF50; text-decoration: underline;">FIFINE AmpliGame A6V</a></p>
             </div>
         </div>
+
+        <!--
+        !-- # карточка --
+        <div class="card">
+            <button class="toggle-spoiler" data-target="spoiler#">text</button>
+        </div>
+
+        !-- Спойлер для # карточки --
+        <div class="spoiler" id="spoiler#">
+            <div class="spoiler-content">
+                <p><strong>text</strong></p>
+                <img src="scr" alt="text"
+                    style="max-width: 50%; height: auto; margin: 10px 0; border-radius: 5px;" class="spoiler-image">
+                <a href="link" target="_blank"
+                    class="external-link">Ссылка</a>
+            </div>
+        </div>
+-->
 
     </div>
 
-<script>
-document.querySelectorAll('.toggle-spoiler').forEach(button => {
-    // Сохраняем исходный текст кнопки при загрузке страницы
-    const originalText = button.textContent;
-    button.setAttribute('data-original-text', originalText);
-});
-
-document.querySelectorAll('.toggle-spoiler').forEach(button => {
-    button.addEventListener('click', function() {
-        const targetId = this.dataset.target;
-        const spoiler = document.getElementById(targetId);
-        const isActive = spoiler.classList.contains('active');
-
-        // Сначала скрываем все спойлеры и восстанавливаем тексты всех кнопок
-        document.querySelectorAll('.spoiler').forEach(s => {
-            s.classList.remove('active');
+    <script>
+        document.querySelectorAll('.toggle-spoiler').forEach(button => {
+            // Сохраняем исходный текст кнопки при загрузке страницы
+            const originalText = button.textContent;
+            const initialWidth = button.offsetWidth + 'px';
+            button.style.width = initialWidth;
+            button.setAttribute('data-original-text', originalText);
         });
 
-        document.querySelectorAll('.toggle-spoiler').forEach(btn => {
-            const originalText = btn.getAttribute('data-original-text');
-            btn.textContent = originalText;
-        });
+        document.querySelectorAll('.toggle-spoiler').forEach(button => {
+            button.addEventListener('click', function () {
+                const targetId = this.dataset.target;
+                const spoiler = document.getElementById(targetId);
+                const isActive = spoiler.classList.contains('active');
 
-        // Теперь открываем нужный спойлер и меняем текст текущей кнопки
-        if (!isActive) {
-            spoiler.classList.add('active');
-            this.textContent = 'Скрыть';
-        }
-    });
-});
-</script>
+                // Сначала скрываем все спойлеры и восстанавливаем тексты всех кнопок
+                document.querySelectorAll('.spoiler').forEach(s => {
+                    s.classList.remove('active');
+                });
+
+                document.querySelectorAll('.toggle-spoiler').forEach(btn => {
+                    const originalText = btn.getAttribute('data-original-text');
+                    btn.textContent = originalText;
+                });
+
+                // Теперь открываем нужный спойлер и меняем текст текущей кнопки
+                if (!isActive) {
+                    spoiler.classList.add('active');
+                    this.textContent = 'Скрыть';
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
