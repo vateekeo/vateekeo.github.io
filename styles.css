@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a; /* Тёмный фон */
+    display: flex;
+    justify-content: center; /* Центрирует по горизонтали */
+    align-items: center; /* Центрирует по вертикали */
+    min-height: 100vh; /* Занимает всю высоту экрана */
+    padding: 20px; /* Отступы по краям для адаптивности */
+}
+
+.centered-content {
+    text-align: center; /* Центрирует содержимое внутри блока */
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    align-items: center; /* Выравнивает элементы по горизонтали */
+    gap: 25px; /* Расстояние между изображением и заголовком */
+}
+
+.centered-circle {
+    width: 200px; /* Ширина изображения */
+    height: 200px; /* Высота изображения (равна ширине для круга) */
+    border-radius: 50%; /* Превращает квадрат в круг */
+    object-fit: cover; /* Обрезает изображение для идеального вписывания в круг */
+    display: block; /* Убирает лишние пробелы под изображением */
+    border: 3px solid #333; /* Тонкая рамка вокруг круга */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Лёгкая тень для объёма */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные эффекты при наведении */
+}
+
+/* Эффект при наведении: увеличение и усиление тени 
+.centered-circle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+} */
+
+.centered-title {
+    color: #fff; /* Белый цвет текста */
+    font-size: 2rem; /* Размер шрифта */
+    font-weight: 600; /* Насыщенность шрифта */
+    margin: 0; /* Убираем стандартные отступы */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.oval-links {
+    display: flex;
+    gap: 20px; /* Расстояние между овальными изображениями */
+    flex-wrap: wrap; /* Перенос на новую строку при нехватке места */
+    justify-content: center; /* Центрирование по горизонтали */
+}
+
+.oval-link {
+    display: block;
+    width: 160px;
+    height: 80px;
+    border-radius: 25px; /* Создаёт овальную форму (радиус меньше половины высоты) */
+    overflow: hidden; /* Скрывает части изображения за пределами овала */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oval-link:hover {
+    /*transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);*/
+    
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.oval-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполняет контейнер без искажений */
+}
+
+.divider {
+    width: 100%; /* Занимает всю ширину контейнера */
+    height: 2px; /* Толщина линии */
+    background: linear-gradient(90deg,
+        transparent,
+        #555,
+        transparent); /* Градиент: тёмные края, светлый центр */
+    margin: 0px 0; /* Отступы сверху и снизу */
+    border-radius: 1px; /* Скругление краёв линии */
+}
+
+@media (max-width: 600px) {
+    .oval-links-second { gap: 10px; }
+}
