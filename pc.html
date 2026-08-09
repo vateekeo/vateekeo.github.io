@@ -117,7 +117,7 @@
         }
 
         .spoiler-panel.active {
-            max-height: 800px;
+            max-height: 750px;
             opacity: 1;
             margin-top: 0.6rem;
             padding: 0.8rem 0.8rem 1.2rem;
@@ -133,30 +133,20 @@
             width: 100%;
         }
 
-        /* описание над картинкой */
+        /* ОПИСАНИЕ НАД КАРТИНКОЙ */
         .spoiler-description {
             color: #c8d6f0;
             font-size: 0.95rem;
             font-weight: 450;
             text-align: center;
-            letter-spacing: 0.02em;
             padding: 0.2rem 0.4rem;
+            line-height: 1.5;
+            width: 100%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            width: 100%;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.02em;
             word-break: break-word;
-            line-height: 1.4;
-        }
-
-        .spoiler-content .img-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            transition: all 0.25s ease;
-            cursor: zoom-in;
-        }
-
-        .spoiler-content .img-wrapper.expanded {
-            cursor: zoom-out;
         }
 
         .spoiler-content img {
@@ -169,20 +159,8 @@
             border: 1px solid #3d3d52;
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
             background: #14141c;
-            transition: all 0.25s ease;
+            transition: 0.2s;
             display: block;
-        }
-
-        /* увеличенное состояние картинки (full size) */
-        .spoiler-content .img-wrapper.expanded img {
-            max-width: 100%;
-            width: 100%;
-            aspect-ratio: auto;
-            height: auto;
-            max-height: 70vh;
-            object-fit: contain;
-            border-radius: 1.2rem;
-            box-shadow: 0 0 30px rgba(80, 140, 255, 0.25);
         }
 
         .spoiler-content a {
@@ -210,21 +188,25 @@
                 padding: 1.5rem 0.8rem;
                 border-radius: 2.2rem;
             }
+
             .buttons-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 0.9rem;
             }
+
             .accordion-btn {
                 font-size: 0.9rem;
                 padding: 0.8rem 0.4rem;
                 min-height: 56px;
                 border-radius: 1.8rem;
             }
+
             .spoiler-content img {
                 max-width: 150px;
             }
-            .spoiler-content .img-wrapper.expanded img {
-                max-width: 100%;
+
+            .spoiler-panel.active {
+                max-height: 650px;
             }
         }
 
@@ -254,22 +236,91 @@
 
     <script>
         (function() {
-            const items = [
-                { label: "Процессор", img: "img/pc/amd.jpg", description: "AMD Ryzen 5 5600 (AM4, 6 ядер, 12 потоков, 3.5 ГГц)", linkText: "AMD Ryzen5 5600", linkUrl: "https://www.citilink.ru/product/processor-amd-ryzen-5-5600-am4-oem-100-000000927-1970792/" },
-                { label: "Материнская плата", img: "img/pc/mother_board.png", description: "Gigabyte B550M AORUS ELITE (AM4, AMD B550, mATX)", linkText: "Gigabyte B550M AORUS ELITE", linkUrl: "https://www.gigabyte.com/Motherboard/B550M-AORUS-ELITE-rev-10-11-12" },
-                { label: "Видеокарта", img: "img/pc/zotac.jpg", description: "ZOTAC GAMING GeForce RTX 4070 Twin Edge 12 ГБ", linkText: "ZOTAC GAMING RTX 4070 Twin Edge", linkUrl: "https://www.zotac.com/ru/product/graphics_card/zotac-gaming-geforce-rtx-4070-twin-edge-0" },
-                { label: "Оперативная память", img: "img/pc/kingston.jpg", description: "Kingston Fury DDR4-3600 32 ГБ (2×16)", linkText: "Kingston Fury DDR4-3600 2x16", linkUrl: "https://www.citilink.ru/product/operativnaya-pamyat-kingston-fury-beast-black-kf436c18bb-16-ddr4-1x-16-1560752/" },
-                { label: "Блок питания", img: "img/pc/power_unit.webp", description: "MONTECH CENTURY 550, 550 Вт, 80+ Bronze", linkText: "MONTECH CENTURY 550", linkUrl: "https://www.dns-shop.ru/product/995d23083bbaed20" },
-                { label: "Кулер CPU", img: "img/pc/cooler.webp", description: "DEEPCOOL GAMMAXX 400K (LGA1700, 120 мм)", linkText: "DEEPCOOL GAMMAXX 400K", linkUrl: "https://www.dns-shop.ru/product/062d3b5b622bed20" },
-                { label: "Накопитель SSD (256 ГБ)", img: "img/pc/NVMe_256.webp", description: "256 ГБ M.2 NVMe Patriot P300", linkText: "Patriot P300 256 ГБ", linkUrl: "https://www.dns-shop.ru/product/537ef8e45c183332" },
-                { label: "Накопитель SSD (1 ТБ)", img: "img/pc/NVMe_1000.webp", description: "1000 ГБ M.2 NVMe ADATA XPG GAMMIX S11 Pro", linkText: "ADATA XPG GAMMIX S11 Pro 1ТБ", linkUrl: "https://www.dns-shop.ru/product/134e19be243b1b80" },
-                { label: "Корпус", img: "img/pc/corpus.webp", description: "PowerCase Mistral Micro D3B ARGB V2 (черный)", linkText: "PowerCase Mistral Micro D3B", linkUrl: "https://www.dns-shop.ru/product/7e2fcf84847e8a40/" },
-                { label: "Монитор", img: "img/pc/monik2.webp", description: "MSI MAG 275QF E21, 27\", IPS, 165 Гц", linkText: "MSI MAG 275QF E21", linkUrl: "https://ru.msi.com/Monitor/MAG-275QF-E21/Overview" },
-                { label: "Клавиатура", img: "img/pc/klava.webp", description: "Redragon Caraxes Pro (60%, механическая)", linkText: "Redragon Caraxes Pro", linkUrl: "https://redragon.ru/catalog/keyboards/10686?ysclid=mbj3zofi4n479313654" },
-                { label: "Мышь", img: "img/pc/mouse.png", description: "DELUX M800DC (PAW3370, игровая)", linkText: "DELUX M800DC", linkUrl: "https://www.deluxworld.com/en-pro-detail-M800pro.html" },
-                { label: "Наушники", img: "img/pc/headphones.jpg", description: "Razer Barracuda X (беспроводные, 7.1)", linkText: "Razer Barracuda X", linkUrl: "https://www.razer.ru/product/gameaudio/razer-barracuda-x?sku=RZ04-04430100-R3M1" },
-                { label: "Микрофон", img: "img/pc/Microphone.jpg", description: "FIFINE AmpliGame A6V (USB, кардиоидный)", linkText: "FIFINE AmpliGame A6V", linkUrl: "https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone" }
-            ];
+            const items = [{
+                label: "Процессор",
+                img: "img/pc/amd.jpg",
+                description: "Мощный 6-ядерный процессор для игр и работы",
+                linkText: "AMD Ryzen5 5600",
+                linkUrl: "https://www.citilink.ru/product/processor-amd-ryzen-5-5600-am4-oem-100-000000927-1970792/"
+            }, {
+                label: "Материнская плата",
+                img: "img/pc/mother_board.png",
+                description: "Надёжная плата с поддержкой PCIe 4.0 и RGB",
+                linkText: "Gigabyte B550M AORUS ELITE",
+                linkUrl: "https://www.gigabyte.com/Motherboard/B550M-AORUS-ELITE-rev-10-11-12"
+            }, {
+                label: "Видеокарта",
+                img: "img/pc/zotac.jpg",
+                description: "Игровая видеокарта с 12 ГБ памяти и DLSS 3",
+                linkText: "ZOTAC GAMING GeForce RTX 4070 Twin Edge",
+                linkUrl: "https://www.zotac.com/ru/product/graphics_card/zotac-gaming-geforce-rtx-4070-twin-edge-0"
+            }, {
+                label: "Оперативная память",
+                img: "img/pc/kingston.jpg",
+                description: "32 ГБ DDR4 с частотой 3600 МГц для максимальной производительности",
+                linkText: "Kingston Fury DDR4-3600 2x16 ГБ",
+                linkUrl: "https://www.citilink.ru/product/operativnaya-pamyat-kingston-fury-beast-black-kf436c18bb-16-ddr4-1x-16-1560752/"
+            }, {
+                label: "Блок питания",
+                img: "img/pc/power_unit.webp",
+                description: "Надёжный блок питания мощностью 550 Вт",
+                linkText: "MONTECH CENTURY 550",
+                linkUrl: "https://www.dns-shop.ru/product/995d23083bbaed20"
+            }, {
+                label: "Кулер CPU",
+                img: "img/pc/cooler.webp",
+                description: "Эффективное воздушное охлаждение для процессора",
+                linkText: "DEEPCOOL GAMMAXX 400K",
+                linkUrl: "https://www.dns-shop.ru/product/062d3b5b622bed20"
+            }, {
+                label: "Накопитель SSD",
+                img: "img/pc/NVMe_256.webp",
+                description: "Быстрый M.2 накопитель для системы и программ",
+                linkText: "256 ГБ Patriot P300",
+                linkUrl: "https://www.dns-shop.ru/product/537ef8e45c183332"
+            }, {
+                label: "Накопитель SSD",
+                img: "img/pc/NVMe_1000.webp",
+                description: "Скоростной M.2 накопитель для игр и данных",
+                linkText: "1000 ГБ ADATA XPG GAMMIX S11 Pro",
+                linkUrl: "https://www.dns-shop.ru/product/134e19be243b1b80"
+            }, {
+                label: "Корпус",
+                img: "img/pc/corpus.webp",
+                description: "Стильный корпус с ARGB-подсветкой и хорошей вентиляцией",
+                linkText: "PowerCase Mistral Micro D3B ARGB",
+                linkUrl: "https://www.dns-shop.ru/product/7e2fcf84847e8a40/"
+            }, {
+                label: "Монитор",
+                img: "img/pc/monik2.webp",
+                description: "27-дюймовый монитор с частотой 180 Гц и IPS-матрицей",
+                linkText: "MSI MAG 275QF E21",
+                linkUrl: "https://ru.msi.com/Monitor/MAG-275QF-E21/Overview"
+            }, {
+                label: "Клавиатура",
+                img: "img/pc/klava.webp",
+                description: "Компактная 60% клавиатура с механическими переключателями",
+                linkText: "Redragon Caraxes Pro",
+                linkUrl: "https://redragon.ru/catalog/keyboards/10686?ysclid=mbj3zofi4n479313654"
+            }, {
+                label: "Мышь",
+                img: "img/pc/mouse.png",
+                description: "Игровая мышь с сенсором PAW3370 и лёгким весом",
+                linkText: "DELUX M800DC",
+                linkUrl: "https://www.deluxworld.com/en-pro-detail-M800pro.html"
+            }, {
+                label: "Наушники",
+                img: "img/pc/headphones.jpg",
+                description: "Беспроводные игровые наушники с качественным звуком",
+                linkText: "Razer Barracuda X",
+                linkUrl: "https://www.razer.ru/product/gameaudio/razer-barracuda-x?sku=RZ04-04430100-R3M1"
+            }, {
+                label: "Микрофон",
+                img: "img/pc/Microphone.jpg",
+                description: "USB-микрофон для стримов и голосового общения",
+                linkText: "FIFINE AmpliGame A6V",
+                linkUrl: "https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone"
+            }];
 
             const grid = document.getElementById('buttonGrid');
             if (!grid) return;
@@ -291,14 +342,10 @@
                 const content = document.createElement('div');
                 content.className = 'spoiler-content';
 
-                // --- ОПИСАНИЕ (текст над картинкой) ---
-                const desc = document.createElement('div');
+                // ОПИСАНИЕ НАД КАРТИНКОЙ
+                const desc = document.createElement('p');
                 desc.className = 'spoiler-description';
-                desc.textContent = item.description || item.label;
-
-                // --- ОБЕРТКА ДЛЯ КАРТИНКИ (чтобы управлять увеличением) ---
-                const wrapper = document.createElement('div');
-                wrapper.className = 'img-wrapper';
+                desc.textContent = item.description;
 
                 const img = document.createElement('img');
                 img.src = item.img;
@@ -306,36 +353,20 @@
                 img.loading = 'lazy';
                 img.style.backgroundColor = '#1e1e2a';
 
-                wrapper.appendChild(img);
-
-                // --- ССЫЛКА ---
                 const link = document.createElement('a');
                 link.href = item.linkUrl;
                 link.textContent = item.linkText;
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
 
-                // Собираем контент: описание, картинка, ссылка
                 content.appendChild(desc);
-                content.appendChild(wrapper);
+                content.appendChild(img);
                 content.appendChild(link);
-
                 panel.appendChild(content);
+
                 card.appendChild(btn);
                 card.appendChild(panel);
 
-                // --- ЛОГИКА УВЕЛИЧЕНИЯ КАРТИНКИ ПО КЛИКУ ---
-                wrapper.addEventListener('click', function(e) {
-                    e.stopPropagation(); // чтобы не закрывать спойлер
-                    const isExpanded = wrapper.classList.contains('expanded');
-                    if (isExpanded) {
-                        wrapper.classList.remove('expanded');
-                    } else {
-                        wrapper.classList.add('expanded');
-                    }
-                });
-
-                // --- КЛИК ПО КНОПКЕ (аккордеон) ---
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const isActive = panel.classList.contains('active');
@@ -345,9 +376,6 @@
                             p.classList.remove('active');
                             const prevBtn = p.closest('.button-card')?.querySelector('.accordion-btn');
                             if (prevBtn) prevBtn.setAttribute('aria-expanded', 'false');
-                            // также сбрасываем увеличение у закрытых панелей (опционально)
-                            const wrapperInside = p.querySelector('.img-wrapper');
-                            if (wrapperInside) wrapperInside.classList.remove('expanded');
                         }
                     });
 
@@ -357,8 +385,6 @@
                     } else {
                         panel.classList.remove('active');
                         btn.setAttribute('aria-expanded', 'false');
-                        // при закрытии спойлера сбрасываем увеличение картинки
-                        wrapper.classList.remove('expanded');
                     }
                 });
 
