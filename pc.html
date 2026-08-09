@@ -42,12 +42,56 @@
             letter-spacing: 0.04em;
             color: #f0f3fa;
             text-shadow: 0 0 12px rgba(100, 180, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.6);
-            margin-bottom: 2.2rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             word-break: break-word;
         }
 
+        /* ВКЛАДКИ */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 2rem;
+            background: #1e1e28;
+            border: 1px solid #3b3b4a;
+            border-radius: 2rem;
+            color: #aab0c4;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.03em;
+            box-shadow: 0 4px 0 #0b0b0f;
+        }
+
+        .tab-btn:hover {
+            background: #2a2a3a;
+            color: #d6dff5;
+            transform: translateY(-1px);
+        }
+
+        .tab-btn.active {
+            background: #32324a;
+            color: #f0f3fa;
+            border-color: #6a6a8a;
+            box-shadow: 0 4px 0 #0b0b0f, 0 0 20px rgba(100, 150, 255, 0.15);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* СЕТКА КНОПОК (вкладка "Плиткой") */
         .buttons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -182,6 +226,77 @@
             text-shadow: 0 0 6px rgba(100, 170, 255, 0.3);
         }
 
+        .spoiler-panel:not(.active) .spoiler-content {
+            pointer-events: none;
+        }
+
+        /* ===== ВКЛАДКА "СПИСКОМ" ===== */
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.2rem 0;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.2rem;
+            background: rgba(26, 26, 36, 0.6);
+            border-radius: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background 0.2s ease;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .list-item:hover {
+            background: rgba(40, 40, 56, 0.7);
+        }
+
+        .list-item .item-label {
+            font-weight: 700;
+            color: #e8ecf7;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            min-width: 140px;
+        }
+
+        .list-item .item-link {
+            color: #8ab3ff;
+            text-decoration: none;
+            font-weight: 450;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed rgba(138, 179, 255, 0.25);
+            padding: 0.1rem 0.2rem;
+            transition: 0.2s;
+            word-break: break-word;
+            text-align: right;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .list-item .item-link:hover {
+            color: #b8d0ff;
+            border-bottom-color: #8ab3ff;
+            text-shadow: 0 0 8px rgba(100, 170, 255, 0.2);
+        }
+
+        /* Адаптация для списка */
+        @media (max-width: 600px) {
+            .list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.7rem 1rem;
+            }
+
+            .list-item .item-link {
+                text-align: left;
+                width: 100%;
+            }
+        }
+
         @media (max-width: 480px) {
             .site-wrapper {
                 padding: 1.5rem 0.8rem;
@@ -207,6 +322,11 @@
             .spoiler-panel.active {
                 max-height: 700px;
             }
+
+            .tab-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 380px) {
@@ -221,16 +341,27 @@
                 grid-template-columns: repeat(5, 1fr);
             }
         }
-
-        .spoiler-panel:not(.active) .spoiler-content {
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
     <div class="site-wrapper">
         <h1 class="main-title">Мой ПК</h1>
-        <div class="buttons-grid" id="buttonGrid"></div>
+
+        <!-- ВКЛАДКИ -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tab-grid">Плиткой</button>
+            <button class="tab-btn" data-tab="tab-list">Списком</button>
+        </div>
+
+        <!-- ВКЛАДКА "ПЛИТКОЙ" -->
+        <div id="tab-grid" class="tab-content active">
+            <div class="buttons-grid" id="buttonGrid"></div>
+        </div>
+
+        <!-- ВКЛАДКА "СПИСКОМ" -->
+        <div id="tab-list" class="tab-content">
+            <div class="list-view" id="listView"></div>
+        </div>
     </div>
 
     <script>
@@ -292,7 +423,7 @@
             }, {
                 label: "Монитор",
                 img: "img/pc/monik2.webp",
-                description: "MSI MAG 275QF E21, 27", IPS, 210 Гц",
+                description: "MSI MAG 275QF E21, 27\", IPS, 210 Гц",
                 linkText: "MSI MAG 275QF E21 27'",
                 linkUrl: "https://ru.msi.com/Monitor/MAG-275QF-E21/Overview"
             }, {
@@ -321,77 +452,125 @@
                 linkUrl: "https://fifinemicrophone.com/products/fifine-ampligame-a6v-usb-microphone"
             }];
 
+            // ===== РЕНДЕР ПЛИТКИ =====
             const grid = document.getElementById('buttonGrid');
-            if (!grid) return;
+            if (grid) {
+                function createCard(item, index) {
+                    const card = document.createElement('div');
+                    card.className = 'button-card';
 
-            function createCard(item, index) {
-                const card = document.createElement('div');
-                card.className = 'button-card';
+                    const btn = document.createElement('button');
+                    btn.className = 'accordion-btn';
+                    btn.textContent = item.label;
+                    btn.setAttribute('aria-expanded', 'false');
+                    btn.dataset.index = index;
 
-                const btn = document.createElement('button');
-                btn.className = 'accordion-btn';
-                btn.textContent = item.label;
-                btn.setAttribute('aria-expanded', 'false');
-                btn.dataset.index = index;
+                    const panel = document.createElement('div');
+                    panel.className = 'spoiler-panel';
+                    panel.id = `spoiler-${index}`;
 
-                const panel = document.createElement('div');
-                panel.className = 'spoiler-panel';
-                panel.id = `spoiler-${index}`;
+                    const content = document.createElement('div');
+                    content.className = 'spoiler-content';
 
-                const content = document.createElement('div');
-                content.className = 'spoiler-content';
+                    const desc = document.createElement('p');
+                    desc.className = 'spoiler-description';
+                    desc.textContent = item.description;
 
-                const desc = document.createElement('p');
-                desc.className = 'spoiler-description';
-                desc.textContent = item.description;
+                    const img = document.createElement('img');
+                    img.src = item.img;
+                    img.alt = item.label;
+                    img.loading = 'lazy';
+                    img.style.backgroundColor = '#1e1e2a';
 
-                const img = document.createElement('img');
-                img.src = item.img;
-                img.alt = item.label;
-                img.loading = 'lazy';
-                img.style.backgroundColor = '#1e1e2a';
+                    const link = document.createElement('a');
+                    link.href = item.linkUrl;
+                    link.textContent = item.linkText;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
 
-                const link = document.createElement('a');
-                link.href = item.linkUrl;
-                link.textContent = item.linkText;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
+                    content.appendChild(desc);
+                    content.appendChild(img);
+                    content.appendChild(link);
+                    panel.appendChild(content);
 
-                content.appendChild(desc);
-                content.appendChild(img);
-                content.appendChild(link);
-                panel.appendChild(content);
+                    card.appendChild(btn);
+                    card.appendChild(panel);
 
-                card.appendChild(btn);
-                card.appendChild(panel);
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isActive = panel.classList.contains('active');
 
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const isActive = panel.classList.contains('active');
+                        document.querySelectorAll('.spoiler-panel').forEach(p => {
+                            if (p !== panel) {
+                                p.classList.remove('active');
+                                const prevBtn = p.closest('.button-card')?.querySelector(
+                                '.accordion-btn');
+                                if (prevBtn) prevBtn.setAttribute('aria-expanded', 'false');
+                            }
+                        });
 
-                    document.querySelectorAll('.spoiler-panel').forEach(p => {
-                        if (p !== panel) {
-                            p.classList.remove('active');
-                            const prevBtn = p.closest('.button-card')?.querySelector('.accordion-btn');
-                            if (prevBtn) prevBtn.setAttribute('aria-expanded', 'false');
+                        if (!isActive) {
+                            panel.classList.add('active');
+                            btn.setAttribute('aria-expanded', 'true');
+                        } else {
+                            panel.classList.remove('active');
+                            btn.setAttribute('aria-expanded', 'false');
                         }
                     });
 
-                    if (!isActive) {
-                        panel.classList.add('active');
-                        btn.setAttribute('aria-expanded', 'true');
-                    } else {
-                        panel.classList.remove('active');
-                        btn.setAttribute('aria-expanded', 'false');
-                    }
-                });
+                    return card;
+                }
 
-                return card;
+                items.forEach((item, idx) => {
+                    const card = createCard(item, idx);
+                    grid.appendChild(card);
+                });
             }
 
-            items.forEach((item, idx) => {
-                const card = createCard(item, idx);
-                grid.appendChild(card);
+            // ===== РЕНДЕР СПИСКА =====
+            const listView = document.getElementById('listView');
+            if (listView) {
+                items.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'list-item';
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.className = 'item-label';
+                    labelSpan.textContent = item.label;
+
+                    const link = document.createElement('a');
+                    link.className = 'item-link';
+                    link.href = item.linkUrl;
+                    link.textContent = item.linkText;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+
+                    row.appendChild(labelSpan);
+                    row.appendChild(link);
+                    listView.appendChild(row);
+                });
+            }
+
+            // ===== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК =====
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = {
+                'tab-grid': document.getElementById('tab-grid'),
+                'tab-list': document.getElementById('tab-list')
+            };
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Убираем активные классы
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    Object.values(tabContents).forEach(c => c.classList.remove('active'));
+
+                    // Активируем текущие
+                    this.classList.add('active');
+                    const targetId = this.dataset.tab;
+                    if (tabContents[targetId]) {
+                        tabContents[targetId].classList.add('active');
+                    }
+                });
             });
         })();
     </script>
