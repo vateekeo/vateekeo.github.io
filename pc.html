@@ -117,7 +117,7 @@
         }
 
         .spoiler-panel.active {
-            max-height: 750px;
+            max-height: 800px;
             opacity: 1;
             margin-top: 0.6rem;
             padding: 0.8rem 0.8rem 1.2rem;
@@ -133,7 +133,6 @@
             width: 100%;
         }
 
-        /* ОПИСАНИЕ НАД КАРТИНКОЙ */
         .spoiler-description {
             color: #c8d6f0;
             font-size: 0.95rem;
@@ -153,8 +152,8 @@
             width: 100%;
             max-width: 220px;
             height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
+            aspect-ratio: auto;
+            object-fit: contain;
             border-radius: 1.4rem;
             border: 1px solid #3d3d52;
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
@@ -206,7 +205,7 @@
             }
 
             .spoiler-panel.active {
-                max-height: 650px;
+                max-height: 700px;
             }
         }
 
@@ -342,7 +341,6 @@
                 const content = document.createElement('div');
                 content.className = 'spoiler-content';
 
-                // ОПИСАНИЕ НАД КАРТИНКОЙ
                 const desc = document.createElement('p');
                 desc.className = 'spoiler-description';
                 desc.textContent = item.description;
